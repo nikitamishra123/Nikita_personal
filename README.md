@@ -1,9 +1,11 @@
 # Nikita_personal
-This is my first repository.
+This is my first repo. For your new start up to understand the git hub.
 <br>
 Let,s start how this world connect with each other.
 <br>
 This some knoweledge help to understarnd the network.
+<br>
+CCNA (Cisco Certified Network Associate)
 <br>
 NETWORK----- When two or more hosts connect together is know as Netwrok.
 Hosts-------PC/Laptop/Phone/Printer etc.
