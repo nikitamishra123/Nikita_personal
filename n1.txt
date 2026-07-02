@@ -1,3 +1,93 @@
 hi 
 this is n1.txt
 
+[root@gitserver ~]# tail /etc/passwd
+cockpit-wsinstance:x:988:983:User for cockpit-ws instances:/nonexisting:/sbin/nologin
+gnome-initial-setup:x:987:982::/run/gnome-initial-setup/:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin
+chrony:x:986:981::/var/lib/chrony:/sbin/nologin
+dnsmasq:x:985:980:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+systemd-oom:x:978:978:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+user1:x:1000:1000:user1:/home/user1:/bin/bash
+user2:x:1001:1001::/home/user-1:/bin/bash
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+[root@gitserver ~]# userdel -rf user1
+[root@gitserver ~]# userdel -rf user2
+[root@gitserver ~]#
+[root@gitserver ~]# useradd user1
+[root@gitserver ~]#
+[root@gitserver ~]# useradd user2
+[root@gitserver ~]#
+[root@gitserver ~]# echo "user1:user1" | chpasswd
+[root@gitserver ~]#
+[root@gitserver ~]# echo "user2:user2" | chpasswd
+[root@gitserver ~]#
+[root@gitserver ~]# tail -5 /etc/shadow
+tcpdump:!!:20547::::::
+systemd-oom:!*:20547::::::
+apache:!!:20554::::::
+user1:$6$rjrO/30ijxG/KXx1$sFteTUxdfgjKhcGMAkG/aMtELzJYkXUdQQ8wFNI4l44fwwyfzx.kQIRpMJond9LLX0rnRJ8DUC6gNLy59xwxb1:20555:0:99999:7:::
+user2:$6$K8ijXhljPM3MLKbo$C6cfdIBFrU729qpvQebvuLrN1DC60w8bwS6q3WsMZ6VyDK34HCwDnFicZI/IIXRn9yk/e62ASNFhf9dFFHUNL/:20555:0:99999:7:::
+[root@gitserver ~]# usermod -aG wheel user1
+[root@gitserver ~]#
+[root@gitserver ~]# usermod -aG wheel user2
+[root@gitserver ~]#
+[root@gitserver ~]# id root
+uid=0(root) gid=0(root) groups=0(root)
+[root@gitserver ~]#
+[root@gitserver ~]# id user1
+uid=1000(user1) gid=1000(user1) groups=1000(user1),10(wheel)
+[root@gitserver ~]# id user2
+uid=1001(user2) gid=1002(user2) groups=1002(user2),10(wheel)
+[root@gitserver ~]#
+[root@gitserver ~]# visudo
+
+[root@gitserver ~]#
+[root@gitserver ~]# git --version
+git version 2.31.1
+[root@gitserver ~]# yum list installed | grep git
+crontabs.noarch                                  1.11-27.20190603git.el9_0        @anaconda
+crypto-policies.noarch                           20220223-1.git5203b41.el9_0.1    @anaconda
+crypto-policies-scripts.noarch                   20220223-1.git5203b41.el9_0.1    @anaconda
+dracut.x86_64                                    055-45.git20220404.el9_0         @anaconda
+dracut-config-rescue.x86_64                      055-45.git20220404.el9_0         @anaconda
+dracut-network.x86_64                            055-45.git20220404.el9_0         @anaconda
+dracut-squash.x86_64                             055-45.git20220404.el9_0         @anaconda
+exempi.x86_64                                    2.6.0-0.2.20211007gite23c213.el9 @AppStream
+git.x86_64                                       2.31.1-2.el9.2                   @Path-2
+git-all.noarch                                   2.31.1-2.el9.2                   @Path-2
+git-clang-format.x86_64                          13.0.1-1.el9                     @Path-2
+git-core.x86_64                                  2.31.1-2.el9.2                   @Path-2
+git-core-doc.noarch                              2.31.1-2.el9.2                   @Path-2
+git-credential-libsecret.x86_64                  2.31.1-2.el9.2                   @Path-2
+git-daemon.x86_64                                2.31.1-2.el9.2                   @Path-2
+git-email.noarch                                 2.31.1-2.el9.2                   @Path-2
+git-gui.noarch                                   2.31.1-2.el9.2                   @Path-2
+git-instaweb.noarch                              2.31.1-2.el9.2                   @Path-2
+git-lfs.x86_64                                   2.13.3-5.el9_0                   @Path-2
+git-subtree.x86_64                               2.31.1-2.el9.2                   @Path-2
+git-svn.noarch                                   2.31.1-2.el9.2                   @Path-2
+gitk.noarch                                      2.31.1-2.el9.2                   @Path-2
+gitweb.noarch                                    2.31.1-2.el9.2                   @Path-2
+glx-utils.x86_64                                 8.4.0-12.20210504git0f9e7d9.el9  @AppStream
+hyperv-daemons.x86_64                            0-0.39.20190303git.el9           @AppStream
+hyperv-daemons-license.noarch                    0-0.39.20190303git.el9           @AppStream
+hypervfcopyd.x86_64                              0-0.39.20190303git.el9           @AppStream
+hypervkvpd.x86_64                                0-0.39.20190303git.el9           @AppStream
+hypervvssd.x86_64                                0-0.39.20190303git.el9           @AppStream
+iscsi-initiator-utils.x86_64                     6.2.1.4-2.git2a8f9d8.el9         @anaconda
+iscsi-initiator-utils-iscsiuio.x86_64            6.2.1.4-2.git2a8f9d8.el9         @anaconda
+lockdev.x86_64                                   1.0.4-0.37.20111007git.el9       @anaconda
+net-tools.x86_64                                 2.0-0.62.20160912git.el9         @anaconda
+plymouth.x86_64                                  0.9.5-5.20210331git1ea1020.el9   @AppStream
+plymouth-core-libs.x86_64                        0.9.5-5.20210331git1ea1020.el9   @AppStream
+plymouth-graphics-libs.x86_64                    0.9.5-5.20210331git1ea1020.el9   @AppStream
+plymouth-plugin-label.x86_64                     0.9.5-5.20210331git1ea1020.el9   @AppStream
+plymouth-plugin-two-step.x86_64                  0.9.5-5.20210331git1ea1020.el9   @AppStream
+plymouth-scripts.x86_64                          0.9.5-5.20210331git1ea1020.el9   @AppSt:wq
+
+
+
+
+
